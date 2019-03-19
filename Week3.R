@@ -44,12 +44,13 @@ managers$AgeCat[is.na(Age)] <- "Elder"
 #Create a new column called sumary_col
 #that contains a summary of each row
 
-summary_col <- c(managers$q1+ managers$q2+ managers$q3+ managers$q4+ managers$q5)
+# summary_col <- c(managers$q1+ managers$q2+ managers$q3+ managers$q4+ managers$q5)
+summary_col <- rowSums(managers[5:9],na.rm = T)
 managers <- data.frame(managers, summary_col)
 
 # Calculate mean value for each row
-mean_col <- na.mean(summary_col, option='mean', na.rm = TRUE)
-mean_col
+mean_col <- rowMeans(subset(managers,select= c(q1, q2, q3, q4, q5)),na.rm = T)
+mean_col <- sprintf(mean_col, fmt = '%#.2f')
 managers <- cbind(managers, mean_col)
 managers
 
