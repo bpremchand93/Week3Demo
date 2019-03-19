@@ -50,7 +50,7 @@ summary_col <- rowSums(managers[5:9],na.rm = T)
 managers <- data.frame(managers, summary_col)
 
 # Calculate mean value for each row and remove NA while calculating mean values
-mean_col <- rowMeans(subset(managers,select= c(q1, q2, q3, q4, q5)),na.rm = T)
+mean_col <- rowMeans(managers[5:9],na.rm = T)
 mean_col <- sprintf(mean_col, fmt = '%#.2f')
 managers <- cbind(managers, mean_col)
 managers
